@@ -1,0 +1,770 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Taksi Şirketi Web Sitesi Planlama Formu</title>
+	<link rel="stylesheet" href="style.css">
+
+
+	<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+	</script>
+	<script type="text/javascript">
+	(function(){
+		emailjs.init({
+			publicKey: "D2qHDLv2La9LTIzPO",
+		});
+	})();
+	</script>
+
+	<script src="script.js"></script>
+</head>
+<body>
+	<header>
+		<div class="container">
+			<h1>Taksi Web Sitesi Planlama</h1>
+			<p class="subtitle">Taksi şirketiniz için özelleştirilmiş web sitesi oluşturma planı</p>
+			<p class="description">Aşağıdaki formu doldurarak web sitesi gereksinimlerinizi belirleyin.</p>
+		</div>
+	</header>
+	
+	<div class="container">
+		<div class="form-container">
+			<div class="progress-container">
+				<div class="progress-info">
+					<div class="progress-status">Tamamlanan Sorular: <span id="completedQuestions">0</span>/<span id="totalQuestions">40</span></div>
+					<div class="progress-percentage"><span id="completionPercentage">0%</span> Tamamlandı</div>
+				</div>
+				<div class="progress-bar">
+					<div class="progress-value" id="progressBar"></div>
+				</div>
+			</div>
+			
+			<form id="planningForm">
+				<!-- BÖLÜM 1: Kullanıcı Deneyimi ve Hesap Yönetimi -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">1</div>
+						<div class="section-title">Kullanıcı Deneyimi ve Hesap Yönetimi</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar e-posta/şifre ile kayıt olabilecek mi?<span class="tooltip">?<span class="tooltip-text">Bu seçenek, kullanıcıların sisteminize e-posta adresi ve şifre oluşturarak kayıt olmalarını sağlar.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q1" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q1" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar sosyal medya hesaplarıyla kayıt olabilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar Google, Facebook veya diğer sosyal medya hesaplarını kullanarak hızlıca kayıt olabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q2" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q2" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Şifremi unuttum özelliği olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar şifrelerini unuttuklarında e-posta ile sıfırlama bağlantısı alabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q3" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q3" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar iletişim bilgilerini güncelleyebilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar kendi profil sayfalarında telefon numarası, adres gibi bilgilerini düzenleyebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q4" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q4" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar sık kullandıkları adresleri kaydedebilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar ev, iş veya favori lokasyonlarını kaydederek sonraki rezervasyonlarda hızlıca seçebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q5" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q5" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Ödeme yöntemleri güvenli bir şekilde saklanabilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcıların kredi kartı bilgileri şifrelenmiş şekilde saklanarak sonraki rezervasyonlarda yeniden girmelerine gerek kalmaz.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q6" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q6" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+				
+				<!-- BÖLÜM 2: Rezervasyon Akışı Detayları -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">2</div>
+						<div class="section-title">Rezervasyon Akışı Detayları</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kalkış ve varış noktası seçimi için otomatik tamamlama özelliği olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar adres yazmaya başladığında sistem otomatik olarak önerilerde bulunur.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q7" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q7" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Farklı araç kategorilerinin karşılaştırmalı özellikleri gösterilecek mi?<span class="tooltip">?<span class="tooltip-text">Ekonomi, Konfor, VIP gibi araç kategorilerinin özellikleri ve fiyatları karşılaştırmalı olarak gösterilir.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q8" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q8" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Yolculuk amacını belirtme seçeneği olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar iş, turistik, özel etkinlik gibi yolculuk amaçlarını belirtebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q9" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q9" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Birden fazla durak ekleme imkanı olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar tek bir rezervasyonda birden fazla durak noktası ekleyebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q10" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q10" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Gidiş-dönüş rezervasyonu aynı anda yapılabilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar tek işlemde hem gidiş hem dönüş yolculuğunu rezerve edebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q11" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q11" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Promosyon kodu veya kupon kullanım alanı olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar indirim kuponu veya promosyon kodu girebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q12" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q12" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+				
+				<!-- BÖLÜM 3: Ödeme İşlemleri -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">3</div>
+						<div class="section-title">Ödeme İşlemleri</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kredi/banka kartı ile ödeme seçeneği sunulacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar kredi veya banka kartı ile online ödeme yapabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q13" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q13" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Online ödeme sistemleri (PayPal, vb.) desteklenecek mi?<span class="tooltip">?<span class="tooltip-text">PayPal, Google Pay gibi alternatif ödeme yöntemleri sunulacak mı?</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q14" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q14" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Ödeme sonrası fatura/makbuz oluşturulacak mı?<span class="tooltip">?<span class="tooltip-text">Yolculuk sonrası kullanıcıya otomatik fatura/makbuz gönderilir mi?</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q15" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q15" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+								
+					<div class="question-group">
+						<div class="question">SSL sertifikası ile güvenli ödeme sağlanacak mı?<span class="tooltip">?<span class="tooltip-text">Web sitesi SSL sertifikası ile şifreli ve güvenli bağlantı sağlar.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q16" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q16" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- BÖLÜM 4: İletişim ve Bildirimler -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">4</div>
+						<div class="section-title">İletişim ve Bildirimler</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Rezervasyon onayları e-posta ile iletilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar rezervasyonlarıyla ilgili onay ve detayları e-posta ile alabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q17" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q17" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Rezervasyon onayları SMS ile iletilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar rezervasyonlarıyla ilgili onay ve detayları SMS ile alabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q18" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q18" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sürücü bilgileri kullanıcıyla paylaşılacak mı?<span class="tooltip">?<span class="tooltip-text">Sürücünün adı, fotoğrafı, araç plakası gibi bilgilerin kullanıcıya gönderilmesi.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q19" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q19" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Yolculuk öncesinde hatırlatma bildirimleri gönderilecek mi?<span class="tooltip">?<span class="tooltip-text">Yaklaşan yolculuk için hatırlatma bildirimleri gönderilir.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q20" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q20" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- BÖLÜM 5: Değerlendirme ve Geri Bildirim Sistemi -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">5</div>
+						<div class="section-title">Değerlendirme ve Geri Bildirim Sistemi</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar sürücüleri puanlayabilecek mi?<span class="tooltip">?<span class="tooltip-text">Yolculuk sonrası kullanıcılar sürücüyü yıldız sistemiyle değerlendirebilir.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q21" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q21" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar sürücüler hakkında yorum yapabilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar sürücüler hakkında yazılı yorum bırakabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q22" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q22" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Kullanıcılar genel hizmet kalitesi hakkında geri bildirimde bulunabilecek mi?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar şirketin genel hizmet kalitesi hakkında geri bildirim verebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q23" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q23" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- BÖLÜM 6: Yardım ve Destek -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">6</div>
+						<div class="section-title">Yardım ve Destek</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sıkça Sorulan Sorular (SSS) bölümü olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcıların en sık sorduğu soruların yanıtlarının bulunduğu bir bölüm.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q24" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q24" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Canlı destek (chat) özelliği olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar web sitesi üzerinden anında canlı destek alabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q25" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q25" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Telefon ile destek bilgileri eklenecek mi?<span class="tooltip">?<span class="tooltip-text">Müşteri hizmetleri telefon numarası web sitesinde belirtilecek mi?</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q26" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q26" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">E-posta ile destek imkanı olacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcılar destek e-posta adresi aracılığıyla iletişim kurabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q27" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q27" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- BÖLÜM 7: Sürücü Uygulaması/Paneli -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">7</div>
+						<div class="section-title">Sürücü Uygulaması/Paneli Özellikleri</div>
+					</div>
+					
+					<div class="note">
+						Bu bölüm, sürücülerinizin kullanımı için ayrı bir panel veya uygulama isterseniz gerekli özellikleri belirlemek içindir.
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sürücüler için özel bir giriş paneli olacak mı?<span class="tooltip">?<span class="tooltip-text">Sürücülerin kendilerine atanan yolculukları ve bilgilerini görebilecekleri ayrı bir panel.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q28" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q28" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sürücüler kendi bilgilerini güncelleyebilecek mi?<span class="tooltip">?<span class="tooltip-text">Sürücüler iletişim bilgilerini, araç bilgilerini vb. güncelleyebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q29" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q29" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Navigasyon entegrasyonu olacak mı?<span class="tooltip">?<span class="tooltip-text">Sürücüler, harita ve rota planlaması için navigasyon hizmetlerinden yararlanabilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q30" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q30" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sürücüler yolculuk durumunu güncelleyebilecek mi?<span class="tooltip">?<span class="tooltip-text">Sürücüler yolculuğu "başladı", "devam ediyor", "tamamlandı" gibi durumlarla güncelleyebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q31" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q31" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Sürücüler kazanç raporlarını görüntüleyebilecek mi?<span class="tooltip">?<span class="tooltip-text">Sürücüler günlük, haftalık veya aylık kazanç raporlarına erişebilirler.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q32" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q32" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Acil durum butonu/yardım mekanizması olacak mı?<span class="tooltip">?<span class="tooltip-text">Sürücüler acil durumlarda kullanabilecekleri bir yardım butonu veya mekanizmasına sahip olurlar.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q33" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q33" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<!-- BÖLÜM 8: Web Sitesi Genel ve Teknik Özellikleri -->
+				<div class="section">
+					<div class="section-header">
+						<div class="section-number">8</div>
+						<div class="section-title">Web Sitesi Genel ve Teknik Özellikleri</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Web sitesi responsive tasarıma sahip olacak mı?<span class="tooltip">?<span class="tooltip-text">Web sitesi tüm cihazlarda (bilgisayar, tablet, telefon) düzgün görüntülenebilir.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q34" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q34" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">İçerik yönetim sistemi (CMS) kullanılacak mı?<span class="tooltip">?<span class="tooltip-text">İçeriklerinizi kolayca güncelleyebileceğiniz bir yönetim paneli olacak.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q35" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q35" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">SEO optimizasyonu yapılacak mı?<span class="tooltip">?<span class="tooltip-text">Arama motorlarında (Google, Yandex) üst sıralarda çıkmak için teknik düzenlemeler yapılır.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q36" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q36" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Google Analytics gibi analitik araçlar entegre edilecek mi?<span class="tooltip">?<span class="tooltip-text">Ziyaretçi istatistiklerini ve davranışlarını izlemek için analitik araçlar kullanılır.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q37" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q37" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">SSL sertifikası kullanılacak mı?<span class="tooltip">?<span class="tooltip-text">Web sitesi güvenli bağlantı (https://) ile erişilebilir olur.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q38" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q38" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">GDPR ve veri gizliliği düzenlemelerine uyum sağlanacak mı?<span class="tooltip">?<span class="tooltip-text">Kullanıcı verilerinin korunması ve yasal düzenlemelere uygun şekilde işlenmesi.</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q39" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q39" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+					
+					<div class="question-group">
+						<div class="question">Çoklu dil desteği olacak mı?<span class="tooltip">?<span class="tooltip-text">Web sitesi birden fazla dilde hizmet verebilir (Türkçe, İngilizce, vb.).</span></span></div>
+						<div class="options">
+							<label class="radio-option">
+								<input type="radio" name="q40" value="Evet" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Evet
+							</label>
+							<label class="radio-option">
+								<input type="radio" name="q40" value="Hayır" onchange="updateProgress()">
+								<span class="checkmark"></span>
+								Hayır
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="submit-container">
+					<button type="submit" class="submit-btn pulse">Formu Gönder</button>
+				</div>
+			</form>
+		</div>
+	</div>
+		
+<!-- Başarı Modal -->
+<div id="successModal" class="modal" style="display:none; position:fixed; z-index:1; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.4);">
+	<div class="modal-content" style="background-color:#fefefe; margin:15% auto; padding:20px; border:1px solid #888; width:80%; max-width:500px; border-radius:5px;">
+	<span class="close-btn" style="color:#aaa; float:right; font-size:28px; font-weight:bold; cursor:pointer;">&times;</span>
+	<h3>Form Başarıyla Tamamlandı!</h3>
+	<p>Form verileriniz şifrelendi ve cihazınıza indirildi. Dosyayı güvenli bir yerde saklayın.</p>
+	</div>
+</div>
+
+</body>

